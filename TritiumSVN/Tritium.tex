@@ -1,0 +1,63 @@
+\documentclass[12pt,twocolumn]{article}
+
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[capposition=bottom]{floatrow}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{rotating}
+\usepackage{afterpage}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{titlesec}
+
+\renewcommand\thesection{\Roman{section}.}
+\renewcommand\thesubsection{\Alph{subsection}.}
+\titleformat{\section}[block]{\bfseries\filcenter}{\thesection}{1em}{}
+\titleformat{\subsection}[block]{\bfseries\filcenter}{\thesubsection}{1em}{}
+
+\begin{document}
+
+\title{Internal calibration of the LUX detector using tritiated methane}
+\author{LUX Collab List}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\maketitle
+
+\input{Abstract}
+
+\end{@twocolumnfalse}
+]
+
+
+\input{Introduction}
+
+\input{UMDExperiments}
+
+\input{Simulations}
+
+\input{Hardware}
+
+\input{InjectionStrategy}   
+
+\input{Results}
+
+\input{Summary}
+
+\begin{thebibliography}{1}
+
+\bibitem{McKinsey} McKinsey, et al.  \emph{Journal of Physics: Conference Series} 203:012026 (2010) 
+\bibitem{Fiorucci} Fiorucci, et al.  \emph{AIP Conference Proceedings} 1200:977 (2010)
+\bibitem{Kastens} Kastens, et al. \emph{Phys. Rev. C} 80:045809 (2009)
+\bibitem{Miyake} Miyake, et al.  \emph{J. vac. Sci. technol. A.} 1:1446-1451 (1983)
+\bibitem{Piche} R. Piche. \emph{Partial Differential Equations} Tampere University of Technology.
+
+
+\end{thebibliography}
+
+
+\end{document}
+
