@@ -72,7 +72,7 @@ In cylindrical coordinates, these equations become
 \[\frac{\delta \phi}{\delta t} = D ( \frac{\delta^2\phi}{\delta r^2} + \frac{1}{r}\frac{\delta \phi}{\delta r} + \frac{1}{r^2}\frac{\delta^2 \phi}{\delta \theta^2} + \frac{\delta^2 \theta}{\delta z^2}).\]
 Since the plastic in our detector at Maryland and in LUX can be approximated by a cylindrical shell, there is no dependence on the azimuthal or $z$ coordinates.  Since $r$ is large compared to the thickness of the plastic shell, $\frac{\delta^2 \phi}{\delta r^2} \gg \frac{1}{r} \frac {\delta \phi}{\delta r}$, so we can make the approximations
 \[J=-D\frac{\delta \phi}{\delta r}\vec{r}\]
-\[\frac{\delta \phi}{\delta t} = D \frac{\delta^2 \phi}{\delta r^2}.\]  We assume the concentration of CH$_3$T in LUX is uniform throughout its volume.  This assumption is justified, since the design of LUX creates currents which stir the liquid xenon.  With perfect mixing the effect of the purifier can be modeled by adding an exponential time dependence to the outer volume.  The time constant of this decay is equal to the time it takes xenon to recircculate through the LUX detector.
+\[\frac{\delta \phi}{\delta t} = D \frac{\delta^2 \phi}{\delta r^2}.\]  We assume the concentration of CH$_3$T in LUX is uniform throughout its volume.  This assumption is justified, since the design of LUX creates currents which stir the liquid xenon.  With perfect mixing the effect of the purifier can be modeled by adding an exponential time dependence to the outer volume.  The time constant of this decay is equal to the time it takes xenon to recirculate through the LUX detector.
 
 We use a simple implementation of the first order Euler method for our numerical simulations.  The finite difference approximations of Fick's two laws in one dimension are 
 \[J_{i,j} = -D \frac{\phi_{i+1,j}-\phi_{i,j}}{\Delta x }\]
@@ -86,13 +86,29 @@ The diffusion is simulated by setting the concentration at the boundary of the p
 \[\frac{\delta C_{out}}{\delta t} = J_{out} \frac{A_{plastic}}{V_{xenon}}-\frac{C_{out}}{\tau},\]
 where $A_{plastic}$ is the surface area of the plastic cylinder, $V_{xenon}$ is the total volume of xenon in the fiducial region, and $\tau$ is the time it takes for one full purification cycle.  The first term on the right of this equation models outgassing of CH$_3$T from the plastic cylinder, while the second term models removal of CH$_3$T through purification.  Using the first order Euler method, we arrive at an expression for $C_{out}$ given by
 \[C_{j+1}=C_j + \Delta t [(J_{1,j}-J_{N_x,j})\frac{A_{plastic}}{V_{xenon}}-\frac{C_j}{\tau}].\]
-The initial concentration is defined by dividing the desired injection activity by the volume of the fiducial region.  We choose $D = 2.3 \times 10^{-9} \frac {cm^2}{sec}$ such that the half-infinite boundary conditions in our diffusion model is valid, and combine this with our allowed range of values for $G$ to extract a value for $K$.  We find that for all $G$ values in our allowed range, an initial injection activity of 0.1 Bq results in 15,000 calibration events with the background rate returning to $<$ 5\% of its initial value in less than one month. 
+The initial concentration is defined by dividing the desired injection activity by the volume of the fiducial region.  We choose $D = 2.3 \times 10^{-9} \frac {cm^2}{sec}$ such that the half-infinite boundary conditions in our diffusion model is valid, and combine this with our allowed range of values for $G$ to extract a value for $K$.  We find that for all $G$ values in our allowed range, an initial injection activity of about 0.1 Bq results in 5,000 calibration events with the nominal LUX background rate returning to $<$ 105\% of its initial value between one and four months. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.15]{LUXActivityOverTime.png}
-\caption{Simulated activity over time in LUX after a 0.1 Bq injection.}
+\includegraphics[width=0.9\textwidth]{LUXActivityOverTime.png}
+\caption{Simulated activity over time in LUX after a 5,000 count calibration.}
 \label{fig:LUXActivity}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{Calibration_length.png}
+\caption{Shown above is the time required to allow the tritium activity to fall to $<$ 5\% of the nominal LUX background. }
+\label{fig:cal_time}
+\end{figure}
+
+The simulations used in figures \ref{fig:LUXActivity} and \ref{fig:cal_time} include the assumption that the rate of purification for CH$_3$T in LUX will be exactly equal to the recirculation rate of the LUX xenon (1.7 days). However, since there are several liquid/gas interfaces in the recirculation path, there will be some effects from Henry's Law solubility, and these effects may alter the rate at which CH$_3$T reaches the SAES getter. This the largest remaining uncertainty in the feasibility of injecting tritiated methane into the LUX detector.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{tau_var_CH3T.png}
+\caption{Displayed are the results of simulated 0.1 Bq injections assuming G = 0.01 cm$^2$/sec. The purification rate is varied to show the possible effect of Henry's Law solubility on the LUX background that.}
+\label{fig:tau_var}
 \end{figure}
 
 NOTE: UPDATE THIS SECTION, REDO EVERYTHING WITH SAME FIDUCIAL VOLUMES, TIME CONSTANTS, ETC
